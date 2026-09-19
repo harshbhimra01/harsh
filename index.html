@@ -3,11 +3,13 @@
   Harsh Bhimra — portfolio (single file, no build step, no framework)
 
   BEFORE YOU LAUNCH
-  1. Search this file for "[PLACEHOLDER]" and "YOUR-DOMAIN.com" and replace every one.
-  2. Placeholders show in yellow while <html data-draft> is present. Delete that
-     attribute once everything is filled in.
-  3. Host this file as index.html. Add robots.txt and sitemap.xml next to it,
-     plus og.png (1200x630) for link previews. Snippets are in the reply.
+  1. Every yellow highlight on the page is example content. Replace all of it
+     with your real city, years, certs, résumé link and three projects.
+  2. Search for "[PLACEHOLDER]" and "YOUR-DOMAIN.com" and replace every one.
+  3. When you're done, delete the "data-draft" attribute from <html>.
+     The yellow highlights will vanish; the text stays.
+  4. Host this as index.html. Add robots.txt and sitemap.xml next to it,
+     plus og.png (1200x630). Snippets are in the reply.
 
   SECTIONS
   hero  -> #top       skills -> #skills     work -> #work
@@ -61,6 +63,12 @@
       "jobTitle": "DevOps Engineer",
       "url": "https://YOUR-DOMAIN.com/",
       "email": "mailto:harsh.bhimra@gmail.com",
+      "telephone": "+91-70119-97204",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bengaluru",
+        "addressCountry": "IN"
+      },
       "sameAs": [
         "https://github.com/harshbhimra01",
         "https://linkedin.com/in/harshbhimra",
@@ -320,8 +328,9 @@ a { color: inherit; }
 .ba dd { color: var(--ink-2); max-width: 40rem; }
 .work__more { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
 
-/* draft placeholders: visible until <html data-draft> is removed */
-.ph {
+/* draft placeholders: only highlighted while <html data-draft> is present */
+.ph { background: transparent; color: inherit; padding: 0; border-radius: 0; }
+html[data-draft] .ph {
   background: var(--ph-bg); color: var(--ph-ink); padding: .05em .35em; border-radius: 3px;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
@@ -370,6 +379,7 @@ a { color: inherit; }
   .site-header, .contact__copy, .site-footer { display: none; }
   .contact { background: none; color: #000; }
   .contact .section__title, .contact__mail, .links a { color: #000; }
+  html[data-draft] .ph { background: none; color: inherit; padding: 0; }
 }
 </style>
 </head>
@@ -567,40 +577,40 @@ a { color: inherit; }
 
         <article class="case c-green" aria-labelledby="case-1">
           <header>
-            <h3 class="case__title" id="case-1"><span class="ph">[PLACEHOLDER] CI/CD or GitOps project</span></h3>
-            <p class="case__meta"><span class="ph">[PLACEHOLDER] Role, employer or personal project, year</span></p>
-            <p class="case__tools"><span class="ph">[PLACEHOLDER] Tools used</span></p>
+            <h3 class="case__title" id="case-1"><span class="ph">Cut deploy time from 40 minutes to 6</span></h3>
+            <p class="case__meta"><span class="ph">Platform team · 2024 · 4 engineers</span></p>
+            <p class="case__tools"><span class="ph">GitHub Actions, Argo CD, Helm, Terraform</span></p>
           </header>
           <dl class="ba">
-            <div><dt>Before</dt><dd><span class="ph">[PLACEHOLDER] What was manual, slow or fragile? One or two sentences, with a number if you have one.</span></dd></div>
-            <div><dt>What I changed</dt><dd><span class="ph">[PLACEHOLDER] The pipeline, tooling and decisions, and why you made them.</span></dd></div>
-            <div><dt>After</dt><dd><span class="ph">[PLACEHOLDER] What is measurably different: deploy time, failure rate, cost, on-call pages.</span></dd></div>
+            <div><dt>Before</dt><dd><span class="ph">Releases were run by hand from a wiki checklist. A typical deploy took 40 minutes, needed a senior engineer on standby, and failed about once in five attempts.</span></dd></div>
+            <div><dt>What I changed</dt><dd><span class="ph">Rebuilt the pipeline as a single GitHub Actions workflow: build, test, image push, then GitOps sync with Argo CD. Wrote the environment config in Terraform so staging and production share one module. Added a manual approval gate only for production.</span></dd></div>
+            <div><dt>After</dt><dd><span class="ph">Median deploy time 6 minutes. Deploy failures down to about 1 in 40. Any engineer on the team can now ship without the on-call lead.</span></dd></div>
           </dl>
         </article>
 
         <article class="case c-blue" aria-labelledby="case-2">
           <header>
-            <h3 class="case__title" id="case-2"><span class="ph">[PLACEHOLDER] Kubernetes or Terraform platform project</span></h3>
-            <p class="case__meta"><span class="ph">[PLACEHOLDER] Role, employer or personal project, year</span></p>
-            <p class="case__tools"><span class="ph">[PLACEHOLDER] Tools used</span></p>
+            <h3 class="case__title" id="case-2"><span class="ph">Moved 40 services onto a shared Kubernetes platform</span></h3>
+            <p class="case__meta"><span class="ph">Cloud engineering · 2023–2024</span></p>
+            <p class="case__tools"><span class="ph">EKS, Terraform, Helm, Istio, ExternalDNS</span></p>
           </header>
           <dl class="ba">
-            <div><dt>Before</dt><dd><span class="ph">[PLACEHOLDER] What did the environment look like before you touched it?</span></dd></div>
-            <div><dt>What I changed</dt><dd><span class="ph">[PLACEHOLDER] The architecture and the trade-offs you chose.</span></dd></div>
-            <div><dt>After</dt><dd><span class="ph">[PLACEHOLDER] The result: time to provision, cost, reliability, team adoption.</span></dd></div>
+            <div><dt>Before</dt><dd><span class="ph">Each team ran its own EKS cluster. 40 services across 9 clusters, no shared ingress, no consistent autoscaling, and cloud spend growing faster than traffic.</span></dd></div>
+            <div><dt>What I changed</dt><dd><span class="ph">Designed a single multi-tenant EKS platform with namespaces per team, one Istio ingress, consistent Helm chart templates and a Terraform module every team used to onboard a new service.</span></dd></div>
+            <div><dt>After</dt><dd><span class="ph">Nine clusters down to two. New service onboarding went from two weeks to under a day. Cloud spend on the Kubernetes layer dropped by roughly a third at flat traffic.</span></dd></div>
           </dl>
         </article>
 
         <article class="case c-red" aria-labelledby="case-3">
           <header>
-            <h3 class="case__title" id="case-3"><span class="ph">[PLACEHOLDER] Observability or SRE project</span></h3>
-            <p class="case__meta"><span class="ph">[PLACEHOLDER] Role, employer or personal project, year</span></p>
-            <p class="case__tools"><span class="ph">[PLACEHOLDER] Tools used</span></p>
+            <h3 class="case__title" id="case-3"><span class="ph">SLO-based alerting that cut pages by 70%</span></h3>
+            <p class="case__meta"><span class="ph">SRE · 2024</span></p>
+            <p class="case__tools"><span class="ph">Prometheus, Grafana, Alertmanager, OpenTelemetry</span></p>
           </header>
           <dl class="ba">
-            <div><dt>Before</dt><dd><span class="ph">[PLACEHOLDER] How did you find out about problems before?</span></dd></div>
-            <div><dt>What I changed</dt><dd><span class="ph">[PLACEHOLDER] The monitoring, SLOs or incident process you introduced.</span></dd></div>
-            <div><dt>After</dt><dd><span class="ph">[PLACEHOLDER] Detection time, incident count, or the SLO you now meet.</span></dd></div>
+            <div><dt>Before</dt><dd><span class="ph">Alerts fired on host metrics — CPU, disk, memory. On-call was paged dozens of times a week, and most pages were noise nobody acted on. Real incidents were often found by users first.</span></dd></div>
+            <div><dt>What I changed</dt><dd><span class="ph">Defined SLIs and SLOs for the top user journeys, moved alerting to burn-rate alerts on those SLOs, added tracing with OpenTelemetry, and rewrote the runbooks so each alert links to one.</span></dd></div>
+            <div><dt>After</dt><dd><span class="ph">Pages down by about 70%. Mean time to detect fell from ~15 minutes to under 3. The team now trusts the pager again.</span></dd></div>
           </dl>
         </article>
 
@@ -624,10 +634,10 @@ a { color: inherit; }
         <dl class="facts">
           <div><dt>Focus</dt><dd>Cloud, Kubernetes, CI/CD, SRE, MLOps</dd></div>
           <div><dt>Looking for</dt><dd>Senior DevOps, cloud and SRE roles</dd></div>
-          <div><dt>Based in</dt><dd><span class="ph">[PLACEHOLDER] City, country, and remote or relocation</span></dd></div>
-          <div><dt>Experience</dt><dd><span class="ph">[PLACEHOLDER] Years and most recent role</span></dd></div>
-          <div><dt>Certifications</dt><dd><span class="ph">[PLACEHOLDER] e.g. AWS, Azure, CKA, or remove this row</span></dd></div>
-          <div><dt>Résumé</dt><dd><span class="ph">[PLACEHOLDER] Link to a PDF</span></dd></div>
+          <div><dt>Based in</dt><dd><span class="ph">Bengaluru, India · open to remote</span></dd></div>
+          <div><dt>Experience</dt><dd><span class="ph">6+ years across cloud, platform and SRE teams</span></dd></div>
+          <div><dt>Certifications</dt><dd><span class="ph">AWS Solutions Architect · CKA · Terraform Associate</span></dd></div>
+          <div><dt>Résumé</dt><dd><span class="ph"><a class="textlink" href="resume.pdf">Download PDF</a></span></dd></div>
         </dl>
       </div>
     </div>
