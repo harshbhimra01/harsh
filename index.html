@@ -4,16 +4,26 @@
 
   BEFORE YOU LAUNCH
   1. Every yellow highlight on the page is example content. Replace all of it
-     with your real city, years, certs, résumé link and three projects.
+     with your real years, certs, résumé details and three projects.
+     The work examples contain invented numbers: swap in true figures you can
+     explain in an interview, or write the result without a number.
+     Each case has a big before/after figure (the .delta block). If a project
+     has no honest number, delete that block; the panel still works.
   2. Search for "[PLACEHOLDER]" and "YOUR-DOMAIN.com" and replace every one.
   3. When you're done, delete the "data-draft" attribute from <html>.
      The yellow highlights will vanish; the text stays.
-  4. Host this as index.html. Add robots.txt and sitemap.xml next to it,
-     plus og.png (1200x630). Snippets are in the reply.
+  4. Put these files in the SAME folder as index.html:
+       photo.jpg                  (optional: "HB" initials show if it is missing)
+       harsh-bhimra-resume.pdf
+       og.png                     (1200x630, for link previews)
+       robots.txt
+       sitemap.xml
+  5. Host the folder.
 
   SECTIONS
   hero  -> #top       skills -> #skills     work -> #work
   about -> #about     contact -> #contact
+  Line anchors used by the hero route: #platform  #delivery  #reliability  #frontier
 -->
 <html lang="en" data-draft>
 <head>
@@ -23,7 +33,7 @@
 <title>Harsh Bhimra | DevOps engineer</title>
 <meta name="description" content="Harsh Bhimra, DevOps engineer. Cloud infrastructure, Kubernetes, CI/CD, GitOps, observability and SRE, with MLOps and LLMOps on top. Open to senior roles.">
 <meta name="author" content="Harsh Bhimra">
-<meta name="theme-color" content="#EEF0ED">
+<meta name="theme-color" content="#12161C">
 <link rel="canonical" href="https://YOUR-DOMAIN.com/"><!-- [PLACEHOLDER] final URL -->
 
 <meta property="og:type" content="website">
@@ -39,7 +49,7 @@
 <meta name="twitter:description" content="Cloud infrastructure, Kubernetes, CI/CD, GitOps, observability and SRE.">
 <meta name="twitter:image" content="https://YOUR-DOMAIN.com/og.png"><!-- [PLACEHOLDER] -->
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2312161C'/%3E%3Cpath d='M4 16h24' stroke='%231552C9' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2312161C'/%3E%3Cpath d='M4 16h24' stroke='%236E9BFF' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23fff'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +76,7 @@
       "telephone": "+91-70119-97204",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Bengaluru",
+        "addressLocality": "Delhi",
         "addressCountry": "IN"
       },
       "sameAs": [
@@ -84,7 +94,8 @@
 /* ==========================================================================
    TOKENS
    Colour is a wayfinding system: each of the four lines owns one colour and
-   that colour is used for the same area of work everywhere on the page.
+   that colour means the same area of work everywhere on the page.
+   On dark surfaces the lines switch to lighter tints (-l) so they keep contrast.
    ========================================================================== */
 :root {
   color-scheme: light;
@@ -93,17 +104,25 @@
   --ground: #EEF0ED;
   --paper:  #FFFFFF;
   --ink:    #12161C;
-  --ink-2:  #48505B;   /* 7.3:1 on ground, 8.4:1 on white */
+  --ink-2:  #48505B;   /* 7.1:1 on ground, 8.2:1 on white */
   --rule:   #C9CFD3;
-  --unlit:  #B4BCC3;
-  --night-2: #C9D0D6;  /* secondary text on ink */
-  --night-rule: #39424D;
+  --night:  #12161C;
+  --night-2: #C9D0D6;  /* body text on night, 11.6:1 */
+  --night-3: #9AA5B1;  /* secondary text on night, 7.2:1 */
+  --night-rule: #2E3741;
+  --unlit:  #5F6B77;   /* a station the route has not reached yet */
 
   /* lines */
-  --blue:  #1552C9;    /* Platform */
-  --green: #0B7A4B;    /* Delivery */
+  --blue:  #1552C9;    /* Platform    */
+  --green: #0B7A4B;    /* Delivery    */
   --red:   #C62828;    /* Reliability */
-  --amber: #E8A000;    /* Frontier */
+  --amber: #E8A000;    /* Frontier    */
+  --blue-l:  #6E9BFF;
+  --green-l: #2ED191;
+  --red-l:   #FF6B62;
+  --amber-l: #FFB627;
+  --key:   linear-gradient(90deg, var(--blue) 0 25%, var(--green) 25% 50%, var(--red) 50% 75%, var(--amber) 75% 100%);
+  --key-l: linear-gradient(90deg, var(--blue-l) 0 25%, var(--green-l) 25% 50%, var(--red-l) 50% 75%, var(--amber-l) 75% 100%);
 
   /* draft placeholders */
   --ph-bg:  #FFF1B8;
@@ -117,6 +136,15 @@
   --step-2:  clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
   --step-3:  clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
   --step-4:  clamp(3.5rem, 12.5vw, 8.5rem);
+
+  /* station geometry (shared by hero route and skill lines) */
+  --dot: 1.75rem;      /* marker diameter */
+  --bw: .375rem;       /* marker ring thickness */
+  --track: .375rem;    /* rail thickness */
+  --dt: .125rem;       /* marker offset from top of its row */
+
+  /* shape */
+  --panel: 28px;       /* big surfaces: map board, case panels */
 
   /* layout */
   --gutter: clamp(1rem, 5vw, 4rem);
@@ -139,13 +167,15 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3, h4, p, ul, ol, dl, dd { margin: 0; }
+::selection { background: var(--amber-l); color: var(--ink); }
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
 ul, ol { padding: 0; list-style: none; }
 a { color: inherit; }
 [hidden] { display: none !important; }
 
 :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 2px; }
-.on-dark :focus-visible { outline-color: var(--amber); }
 
 .wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
 .vh {
@@ -154,7 +184,7 @@ a { color: inherit; }
 }
 .skip {
   position: absolute; left: 1rem; top: -5rem; z-index: 100;
-  background: var(--ink); color: #fff; padding: .75rem 1rem; border-radius: 6px; font-weight: 700;
+  background: var(--amber-l); color: var(--ink); padding: .75rem 1rem; border-radius: 6px; font-weight: 800;
 }
 .skip:focus { top: .75rem; }
 
@@ -164,26 +194,50 @@ a { color: inherit; }
 .c-red   { --c: var(--red); }
 .c-amber { --c: var(--amber); }
 
+/* dark surfaces: lines use their light tints, focus rings turn amber */
+.on-dark { color: #fff; }
+.on-dark .c-blue  { --c: var(--blue-l); }
+.on-dark .c-green { --c: var(--green-l); }
+.on-dark .c-red   { --c: var(--red-l); }
+.on-dark .c-amber { --c: var(--amber-l); }
+.on-dark :focus-visible { outline-color: var(--amber-l); }
+
 /* ==========================================================================
-   HEADER
+   HEADER  (dark; the nav is a strip map that lights up as you travel down the page)
    ========================================================================== */
-.site-header { background: var(--ground); border-bottom: 1px solid var(--rule); }
-.key {
-  height: 6px;
-  background: linear-gradient(90deg,
-    var(--blue) 0 25%, var(--green) 25% 50%, var(--red) 50% 75%, var(--amber) 75% 100%);
-}
+.site-header { background: var(--night); border-bottom: 1px solid var(--night-rule); }
+.key { height: 6px; background: var(--key); }
 .site-header__row {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: 0 1rem; padding-block: .5rem;
+  gap: 0 2rem; padding-block: .25rem;
 }
-.wordmark { font-weight: 800; font-size: 1.25rem; letter-spacing: -.01em; text-decoration: none; padding-block: .5rem; }
-.nav { display: flex; gap: .125rem; margin-inline: -.5rem; }
+.wordmark { font-weight: 800; font-size: 1.25rem; letter-spacing: -.01em; text-decoration: none; padding-block: .5rem; color: #fff; }
+
+.nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; }
+@media (min-width: 760px) { .nav { width: 23rem; } }
 .nav a {
-  display: inline-flex; align-items: center; min-height: 44px; padding: 0 .625rem;
-  font-weight: 600; font-size: 1rem; text-decoration: none; border-radius: 6px;
+  position: relative; display: flex; align-items: flex-end; justify-content: center;
+  min-height: 3.5rem; padding: 0 .25rem .5rem;
+  color: var(--night-2); font-weight: 600; font-size: .9375rem; text-decoration: none;
 }
-.nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .3em; }
+.nav a:hover, .nav a[aria-current] { color: #fff; }
+.nav a[aria-current] { font-weight: 800; }
+/* station */
+.nav a::before {
+  content: ""; position: absolute; top: .625rem; left: 50%; z-index: 1;
+  width: .875rem; height: .875rem; margin-left: -.4375rem; border-radius: 50%;
+  background: var(--night); border: 3px solid var(--unlit);
+}
+/* track to the next station */
+.nav a::after {
+  content: ""; position: absolute; top: calc(.625rem + .4375rem - 2px); left: 50%;
+  width: 100%; height: 4px; border-radius: 99px; background: var(--unlit);
+}
+.nav a:last-child::after { display: none; }
+.nav a.is-past::before { background: #fff; border-color: #fff; }
+.nav a.is-past::after { background: #fff; }
+.nav a[aria-current]::before { background: var(--amber-l); border-color: var(--amber-l); transform: scale(1.3); }
+.nav a:hover::before { border-color: #fff; }
 @media (min-width: 760px) {
   .site-header { position: sticky; top: 0; z-index: 50; }
 }
@@ -195,75 +249,118 @@ a { color: inherit; }
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 48px; padding: 0 1.5rem; border-radius: 6px;
   border: 2px solid var(--ink); background: transparent; color: var(--ink);
-  font: inherit; font-weight: 700; text-decoration: none; cursor: pointer;
+  font: inherit; font-weight: 800; text-decoration: none; cursor: pointer;
 }
-.btn--solid { background: var(--ink); color: #fff; }
-.btn--solid:hover { background: var(--blue); border-color: var(--blue); }
+.btn--amber { background: var(--amber-l); border-color: var(--amber-l); color: var(--ink); }
+.btn--amber:hover { background: #fff; border-color: #fff; }
 .btn--night { border-color: #fff; color: #fff; }
 .btn--night:hover { background: #fff; color: var(--ink); }
 .textlink { font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: .25em; }
 .textlink:hover { color: var(--blue); }
+.on-dark .textlink { color: #fff; text-decoration-color: var(--amber-l); }
+.on-dark .textlink:hover { color: var(--amber-l); }
 
 /* ==========================================================================
    STATIONS  (shared by the hero route and the skill lines)
    Vertical by default. --c is the line colour, inherited from the parent.
    ========================================================================== */
-.stn { position: relative; padding: 0 0 1.75rem 3rem; }
+.stn { position: relative; padding: 0 0 1.75rem calc(var(--dot) + 1.25rem); }
 .stn:last-child { padding-bottom: 0; }
 /* the track from this station down to the next */
 .stn::before {
-  content: ""; position: absolute; left: .6875rem; top: 1rem;
-  width: .375rem; height: 100%; background: var(--c); border-radius: 99px;
+  content: ""; position: absolute;
+  left: calc((var(--dot) - var(--track)) / 2);
+  top: calc(var(--dt) + var(--dot) / 2);
+  width: var(--track); height: 100%;
+  background: var(--c); border-radius: 99px;
 }
 .stn:last-child::before { display: none; }
 /* the station marker */
 .stn::after {
-  content: ""; position: absolute; left: 0; top: .125rem;
-  width: 1.75rem; height: 1.75rem; border-radius: 50%;
-  background: var(--paper); border: .375rem solid var(--c);
+  content: ""; position: absolute; left: 0; top: var(--dt);
+  width: var(--dot); height: var(--dot); border-radius: 50%;
+  background: var(--paper); border: var(--bw) solid var(--c);
 }
 /* interchange: a second ring in ink */
 .stn--x::after { box-shadow: 0 0 0 .1875rem var(--paper), 0 0 0 .375rem var(--ink); }
 
-.stn__name { font-weight: 800; font-size: 1.1875rem; line-height: 1.25; }
-.stn__tools { margin-top: .25rem; font-weight: 600; }
+.stn__name { font-weight: 800; font-size: 1.25rem; line-height: 1.25; }
+.stn__tools { margin-top: .25rem; font-size: 1rem; font-weight: 600; line-height: 1.4; }
 .stn__desc { margin-top: .25rem; color: var(--ink-2); font-size: var(--step--1); line-height: 1.55; }
 .xchg { margin-top: .625rem; display: flex; align-items: center; gap: .5rem; font-size: .875rem; font-weight: 700; }
 .xchg i { width: .75rem; height: .75rem; border-radius: 3px; background: var(--o); flex: none; }
 
 /* ==========================================================================
-   HERO
+   HERO  (dark)
    ========================================================================== */
-.hero { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(3.5rem, 7vw, 6rem); }
+.hero { background: var(--night); padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 6vw, 5rem); }
+
+.hero__grid { display: grid; gap: 1.75rem; }
+@media (min-width: 900px) {
+  .hero__grid { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: clamp(3rem, 6vw, 6rem); }
+}
+
+/* portrait: the four-line key wrapped around a photo, with initials as a fallback */
+.hero__avatar {
+  width: clamp(7rem, 28vw, 11rem); aspect-ratio: 1;
+  border-radius: 50%; padding: 6px;
+  background: conic-gradient(var(--blue-l) 0 25%, var(--green-l) 25% 50%, var(--red-l) 50% 75%, var(--amber-l) 75% 100%);
+}
+@media (min-width: 900px) { .hero__avatar { width: clamp(13rem, 25vw, 22rem); padding: 8px; } }
+@media (max-width: 899px) { .hero__avatar { order: -1; } }
+.hero__disc {
+  position: relative; width: 100%; height: 100%; overflow: hidden;
+  border-radius: 50%; border: 5px solid var(--night);
+  background: #1E252E; color: #fff;
+  display: grid; place-items: center;
+  font-weight: 900; font-size: clamp(1.75rem, 5.5vw, 5rem); letter-spacing: -.03em;
+}
+.hero__disc img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 20%;
+}
+
 .hero__name {
   font-weight: 900; font-size: var(--step-4);
-  line-height: .92; letter-spacing: -.035em;
+  line-height: .9; letter-spacing: -.04em; color: #fff;
 }
 .hero__name span { display: block; }
 @media (min-width: 640px) { .hero__name span { display: inline; } }
-.hero__role {
-  margin-top: 1.25rem; font-weight: 600; font-size: var(--step-2);
-  line-height: 1.15; letter-spacing: -.01em;
+@media (min-width: 900px) {
+  .hero__name { font-size: clamp(6rem, 11.5vw, 10.5rem); }
+  .hero__name span { display: block; }
 }
-.hero__lede { margin-top: 1.5rem; max-width: 34rem; font-size: var(--step-1); line-height: 1.5; color: var(--ink-2); }
-.hero__actions { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
-.hero__status { margin-top: 1.5rem; display: flex; align-items: center; gap: .625rem; font-weight: 600; }
-.pulse { width: .75rem; height: .75rem; border-radius: 50%; background: var(--green); flex: none; }
+.hero__role {
+  margin-top: 1.5rem; font-weight: 700; font-size: var(--step-2);
+  line-height: 1.15; letter-spacing: -.015em; color: #fff;
+}
+.hero__lede { margin-top: 1.25rem; max-width: 34rem; font-size: var(--step-1); line-height: 1.5; color: var(--night-2); }
+.hero__actions { margin-top: 1.75rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
+.hero__status { margin-top: 1.25rem; display: flex; align-items: flex-start; gap: .625rem; font-weight: 600; line-height: 1.4; }
+.pulse { width: .75rem; height: .75rem; margin-top: .4em; border-radius: 50%; background: var(--green-l); flex: none; }
 
-.route__cap { margin-top: clamp(2.5rem, 6vw, 4.5rem); max-width: 34rem; color: var(--ink-2); font-size: var(--step--1); }
+/* the route */
+.route__cap { margin-top: clamp(2.5rem, 5vw, 4rem); max-width: 36rem; color: var(--night-3); font-size: var(--step--1); }
 .route { margin-top: 1.5rem; display: grid; }
+.stn__link { display: block; color: inherit; text-decoration: none; border-radius: 4px; }
 .route .stn__name { font-size: var(--step-1); }
-.route .stn__tools { font-weight: 400; color: var(--ink-2); font-size: var(--step--1); }
+.route .stn__tools { display: block; font-weight: 400; color: var(--night-3); font-size: var(--step--1); }
+.stn__link:hover .stn__name {
+  text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: .2em;
+  text-decoration-color: var(--c);
+}
 
 @media (min-width: 760px) {
-  .route { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .route .stn, .route .stn:last-child { padding: 3.25rem 1rem 0 0; }
-  .route .stn::before { left: .875rem; top: .6875rem; width: 100%; height: .375rem; }
-  .route .stn::after { top: 0; }
+  .route { --dot: 2.25rem; --bw: .5rem; --track: .5rem; --dt: 0rem; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .route .stn, .route .stn:last-child { padding: calc(var(--dot) + 1rem) 1rem 0 0; }
+  .route .stn::before {
+    left: calc(var(--dot) / 2); top: calc((var(--dot) - var(--track)) / 2);
+    width: 100%; height: var(--track);
+  }
 }
 
 /* The one orchestrated moment: the route draws itself once, station by station.
-   Without motion (or reduced motion) the finished state is shown immediately. */
+   Without motion (or with reduced motion) the finished state is shown immediately. */
 @media (prefers-reduced-motion: no-preference) {
   .route .stn::before {
     transform-origin: top; animation: draw-y .5s linear both;
@@ -281,27 +378,62 @@ a { color: inherit; }
 @keyframes draw-y { from { transform: scaleY(0); } }
 @keyframes draw-x { from { transform: scaleX(0); } }
 @keyframes light {
-  from { border-color: var(--unlit); background: var(--ground); }
+  from { border-color: var(--unlit); background: var(--night); }
   to   { border-color: var(--c);     background: var(--paper); }
 }
 @keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(11, 122, 75, .45); }
-  100% { box-shadow: 0 0 0 .75rem rgba(11, 122, 75, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(46, 209, 145, .5); }
+  100% { box-shadow: 0 0 0 .75rem rgba(46, 209, 145, 0); }
+}
+
+/* platform edge: tactile paving between the dark station and the daylight */
+.edge {
+  height: 24px; background-color: var(--amber-l);
+  background-image: radial-gradient(circle at 6px 6px, rgba(18, 22, 28, .38) 0 2.75px, transparent 3.25px);
+  background-size: 12px 12px;
 }
 
 /* ==========================================================================
    SECTIONS
    ========================================================================== */
-.section { padding-block: clamp(4rem, 9vw, 7.5rem); scroll-margin-top: 4rem; }
+.section { padding-block: clamp(4rem, 9vw, 7.5rem); scroll-margin-top: 5.5rem; }
 .section--paper { background: var(--paper); }
 .section__head { max-width: 46rem; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
-.section__title { font-weight: 800; font-size: var(--step-3); line-height: 1; letter-spacing: -.03em; }
+.section__title { font-weight: 900; font-size: var(--step-3); line-height: 1; letter-spacing: -.035em; }
 .section__intro { margin-top: 1.25rem; max-width: 40rem; color: var(--ink-2); }
 
-/* ---- skills ---- */
+/* ---- skills: the map board (wide screens) ---- */
+.map { display: none; }
+@media (min-width: 1000px) {
+  .map {
+    display: block; margin-bottom: clamp(3rem, 6vw, 4.5rem);
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 3rem);
+    background: var(--night); border-radius: var(--panel);
+  }
+}
+.map svg { display: block; width: 100%; height: auto; }
+.map .track { fill: none; stroke: var(--c); stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+.map .stop  { fill: #fff; stroke: var(--c); stroke-width: 6; }
+.map .swap  { fill: var(--night); stroke: #fff; stroke-width: 7; }
+.map .badge rect { fill: var(--c); }
+.map text { font-family: var(--font); font-weight: 700; font-size: 19px; fill: #fff; }
+.map .badge text { font-weight: 800; font-size: 17px; fill: var(--night); text-anchor: middle; }
+.map .end   { text-anchor: end; }
+.map .mid   { text-anchor: middle; }
+.map .note  { font-weight: 600; fill: var(--night-2); font-size: 17px; }
+.map g { transition: opacity .2s; }
+@media (hover: hover) {
+  .map svg:has(.c-blue:hover)  :is(.c-green, .c-red, .c-amber),
+  .map svg:has(.c-green:hover) :is(.c-blue, .c-red, .c-amber),
+  .map svg:has(.c-red:hover)   :is(.c-blue, .c-green, .c-amber),
+  .map svg:has(.c-amber:hover) :is(.c-blue, .c-green, .c-red) { opacity: .2; }
+}
+
+/* ---- skills: the four lines ---- */
 .lines { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3.5rem 2.5rem; }
 @media (min-width: 720px)  { .lines { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1120px) { .lines { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.line { scroll-margin-top: 7rem; }
 .line__badge {
   display: inline-block; padding: .3rem 1rem; border-radius: 99px;
   background: var(--c); color: #fff; font-weight: 800; font-size: var(--step-1); line-height: 1.25;
@@ -309,23 +441,75 @@ a { color: inherit; }
 .c-amber .line__badge { color: var(--ink); }
 .line__blurb { margin-top: .75rem; color: var(--ink-2); font-size: var(--step--1); }
 .stns { margin-top: 1.75rem; margin-left: .375rem; }
-
-/* ---- work ---- */
-.cases { display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
-.case {
-  display: grid; gap: 1.5rem 3rem;
-  padding-left: clamp(1.25rem, 3vw, 2.25rem); border-left: .5rem solid var(--c);
+/* arriving from a hero station: ring the line you landed on */
+.line:target .line__badge { box-shadow: 0 0 0 4px var(--paper), 0 0 0 7px var(--c); }
+@media (prefers-reduced-motion: no-preference) {
+  .line:target .line__badge { animation: arrive .9s ease-out 1; }
 }
-@media (min-width: 960px) { .case { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); } }
-.case__title { font-weight: 800; font-size: var(--step-2); line-height: 1.15; letter-spacing: -.02em; }
-.case__meta { margin-top: .75rem; color: var(--ink-2); font-size: var(--step--1); }
-.case__tools { margin-top: 1rem; font-weight: 600; font-size: var(--step--1); }
-.ba { display: grid; }
-.ba > div { display: grid; gap: .25rem 1.5rem; padding: 1rem 0; border-top: 1px solid var(--rule); }
-.ba > div:first-child { border-top: 0; padding-top: 0; }
-@media (min-width: 560px) { .ba > div { grid-template-columns: 9rem minmax(0, 1fr); } }
-.ba dt { font-weight: 800; }
-.ba dd { color: var(--ink-2); max-width: 40rem; }
+@keyframes arrive {
+  from { box-shadow: 0 0 0 4px var(--paper), 0 0 0 4px var(--c); }
+  to   { box-shadow: 0 0 0 4px var(--paper), 0 0 0 7px var(--c); }
+}
+
+/* ---- work: each project is a sign panel in its line colour ---- */
+.cases { display: grid; gap: clamp(1.25rem, 3vw, 2rem); }
+.case {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; gap: 2rem 3rem;
+  padding: clamp(1.5rem, 4vw, 3.25rem);
+  background: var(--c); color: #fff; border-radius: var(--panel);
+}
+/* a big dark ring, like a station marker seen up close */
+.case::before {
+  content: ""; position: absolute; z-index: -1; right: -7rem; top: -7rem;
+  width: 24rem; height: 24rem; border-radius: 50%; border: 2.5rem solid rgba(0, 0, 0, .12);
+}
+@media (min-width: 960px) {
+  .case { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); grid-template-areas: "head delta" "ba ba"; align-items: start; }
+}
+.case__head { grid-area: head; }
+.case__line {
+  display: inline-block; padding: .2rem .875rem; border-radius: 99px;
+  background: #fff; color: var(--c); font-weight: 800; font-size: .9375rem; line-height: 1.5;
+}
+.case__title { margin-top: 1.25rem; font-weight: 800; font-size: var(--step-2); line-height: 1.1; letter-spacing: -.02em; }
+.case__meta { margin-top: .875rem; font-size: var(--step--1); }
+.case__tools { margin-top: .25rem; font-weight: 700; font-size: var(--step--1); }
+
+/* the headline result: before, an honest rail, after */
+.delta { grid-area: delta; align-self: center; }
+.delta__row {
+  display: flex; align-items: center; gap: clamp(.75rem, 2vw, 1.5rem);
+  font-weight: 900; font-size: clamp(2.75rem, 6vw, 5.25rem); line-height: 1; letter-spacing: -.035em;
+}
+.delta__from { font-size: .62em; font-weight: 800; }
+.delta small { margin-left: .25em; font-size: .34em; font-weight: 700; letter-spacing: 0; }
+.delta__rail { position: relative; flex: 1 1 2rem; min-width: 2rem; height: .5rem; border-radius: 99px; background: #fff; }
+.delta__rail::before, .delta__rail::after {
+  content: ""; position: absolute; top: 50%; width: 1.5rem; height: 1.5rem;
+  border-radius: 50%; border: .4rem solid #fff; transform: translateY(-50%);
+}
+.delta__rail::before { left: -.25rem; background: var(--c); }
+.delta__rail::after  { right: -.25rem; background: #fff; }
+.delta__label { margin-top: 1rem; font-size: var(--step--1); font-weight: 600; line-height: 1.4; }
+
+.ba { grid-area: ba; display: grid; gap: 1.5rem; padding-top: 1.75rem; border-top: 1px solid rgba(255, 255, 255, .45); }
+.ba > div { display: grid; align-content: start; gap: .5rem; }
+@media (min-width: 900px) {
+  .ba { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+  .ba > div { padding-inline: 1.75rem; border-left: 1px solid rgba(255, 255, 255, .45); }
+  .ba > div:first-child { padding-left: 0; border-left: 0; }
+  .ba > div:last-child { padding-right: 0; }
+}
+.ba dt { display: flex; align-items: center; gap: .625rem; font-weight: 800; font-size: 1.125rem; }
+.ba dt::before {
+  content: ""; flex: none; width: 1.125rem; height: 1.125rem; border-radius: 50%; border: .3rem solid #fff;
+}
+.ba > div:nth-child(2) dt::before { background: linear-gradient(90deg, #fff 50%, transparent 50%); }
+.ba > div:last-child dt::before { background: #fff; }
+.ba dd { max-width: 40rem; }
+.ba > div:last-child dd { font-weight: 700; }
+
 .work__more { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
 
 /* draft placeholders: only highlighted while <html data-draft> is present */
@@ -335,30 +519,56 @@ html[data-draft] .ph {
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 
-/* ---- about ---- */
+/* ---- about: the facts are a ticket ---- */
 .about__grid { display: grid; gap: 3rem; }
-@media (min-width: 900px) { .about__grid { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 5rem; } }
-.prose p { max-width: 38rem; font-size: var(--step-1); line-height: 1.55; }
+@media (min-width: 960px) { .about__grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 5rem; align-items: start; } }
+.prose p { max-width: 40rem; font-size: var(--step-0); line-height: 1.65; color: var(--ink-2); }
 .prose p + p { margin-top: 1.25rem; }
-.facts { border-top: 2px solid var(--ink); align-self: start; }
-.facts > div { display: grid; gap: .125rem 1rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
-@media (min-width: 420px) { .facts > div { grid-template-columns: 8.5rem minmax(0, 1fr); } }
-.facts dt { font-weight: 800; }
-.facts dd { color: var(--ink-2); }
+.prose .lead { font-size: var(--step-2); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; color: var(--ink); }
 
-/* ---- contact (the terminus) ---- */
-.contact { background: var(--ink); color: var(--paper); }
+.ticket { background: var(--night); border-radius: 22px; overflow: hidden; }
+.ticket__top { padding: 1.75rem 1.75rem 1.5rem; }
+.ticket__k { color: var(--night-3); font-size: var(--step--1); font-weight: 600; }
+.ticket__dest { margin-top: .25rem; font-weight: 800; font-size: var(--step-1); line-height: 1.2; letter-spacing: -.01em; }
+.ticket__perf { position: relative; height: 0; border-top: 2px dashed var(--unlit); }
+.ticket__perf::before, .ticket__perf::after {
+  content: ""; position: absolute; top: -15px; width: 28px; height: 28px; border-radius: 50%; background: var(--paper);
+}
+.ticket__perf::before { left: -14px; }
+.ticket__perf::after  { right: -14px; }
+.ticket__facts { padding: .5rem 1.75rem 0; }
+.ticket__facts > div { display: grid; gap: .125rem 1rem; padding: .75rem 0; border-bottom: 1px solid var(--night-rule); }
+@media (min-width: 420px) { .ticket__facts > div { grid-template-columns: 7.5rem minmax(0, 1fr); } }
+.ticket__facts > div:last-child { border-bottom: 0; }
+.ticket__facts dt { color: var(--night-3); font-weight: 600; }
+.ticket__facts dd { font-weight: 600; }
+.ticket__code {
+  height: 3rem; margin: .75rem 1.75rem 1.75rem; background: var(--key-l);
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px, #000 5px 6px, transparent 6px 10px, #000 10px 14px, transparent 14px 16px, #000 16px 17px, transparent 17px 21px);
+          mask-image: repeating-linear-gradient(90deg, #000 0 3px, transparent 3px 5px, #000 5px 6px, transparent 6px 10px, #000 10px 14px, transparent 14px 16px, #000 16px 17px, transparent 17px 21px);
+}
+
+/* ---- contact (the terminus: the key stripe from the header closes the page) ---- */
+.contact {
+  background: var(--night);
+  border-top: 6px solid transparent; border-image: var(--key) 1;
+}
 .contact .section__title { color: #fff; }
 .contact__grid { display: grid; gap: 3rem; }
 @media (min-width: 900px) { .contact__grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 5rem; align-items: start; } }
+.contact__intro { container-type: inline-size; }
 .contact__lede { margin-top: 1.25rem; max-width: 34rem; color: var(--night-2); }
 .contact__mail {
   display: inline-block; margin-top: 2rem; color: #fff;
-  font-weight: 800; font-size: clamp(1.3rem, 5.4vw, 3.25rem); letter-spacing: -.02em; line-height: 1.15;
-  text-decoration-color: var(--amber); text-decoration-thickness: .1em; text-underline-offset: .15em;
+  font-weight: 800; font-size: clamp(1.3rem, 5.4vw, 2.6rem); letter-spacing: -.02em; line-height: 1.15;
+  text-decoration-color: var(--amber-l); text-decoration-thickness: .1em; text-underline-offset: .15em;
   overflow-wrap: anywhere;
 }
-.contact__mail:hover { color: var(--amber); }
+@supports (font-size: 1cqi) {
+  /* 22 characters must fit the column: about 7.4% of its width per em */
+  .contact__mail { font-size: clamp(1.15rem, 7.4cqi, 2.75rem); }
+}
+.contact__mail:hover { color: var(--amber-l); }
 .contact__copy { margin-top: 1.5rem; }
 .links { border-top: 1px solid var(--night-rule); }
 .links a {
@@ -368,17 +578,37 @@ html[data-draft] .ph {
 }
 .links__label { font-weight: 800; }
 .links__value { color: var(--night-2); text-align: right; overflow-wrap: anywhere; font-size: var(--step--1); }
-.links a:hover .links__value { color: #fff; text-decoration: underline; text-underline-offset: .25em; }
+.links a:hover .links__value { color: var(--amber-l); text-decoration: underline; text-underline-offset: .25em; }
 
 /* ---- footer ---- */
-.site-footer { background: var(--ink); color: var(--night-2); border-top: 1px solid var(--night-rule); padding-block: 1.5rem; font-size: .9375rem; }
+.site-footer { background: var(--night); color: var(--night-2); border-top: 1px solid var(--night-rule); padding-block: 1.5rem; font-size: .9375rem; }
 .site-footer__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; }
 .site-footer a { color: #fff; }
 
+/* ---- Windows High Contrast / forced colours: keep rails, markers and panels visible ---- */
+@media (forced-colors: active) {
+  .stn::before, .nav a::after { background: CanvasText; }
+  .stn::after, .nav a::before { border-color: CanvasText; }
+  .line__badge, .btn--amber { border: 2px solid CanvasText; }
+  .key, .edge { display: none; }
+  .map .track { stroke: CanvasText; }
+  .map .stop, .map .swap { stroke: CanvasText; }
+  .map .badge rect { fill: Canvas; stroke: CanvasText; stroke-width: 2; }
+  .map .badge text { fill: CanvasText; }
+  .case, .ticket, .map { border: 2px solid CanvasText; }
+  .delta__rail { background: CanvasText; }
+  .delta__rail::before, .delta__rail::after { border-color: CanvasText; }
+  .ticket__code { background: CanvasText; }
+  .contact { border-image: none; border-top: 6px solid CanvasText; }
+}
+
 @media print {
-  .site-header, .contact__copy, .site-footer { display: none; }
-  .contact { background: none; color: #000; }
-  .contact .section__title, .contact__mail, .links a { color: #000; }
+  .site-header, .edge, .map, .contact__copy, .site-footer, .ticket__code { display: none; }
+  .hero, .contact, .ticket, .case { background: none !important; color: #000 !important; border-image: none; }
+  .hero__name, .hero__role, .hero__lede, .route__cap, .route .stn__tools, .contact .section__title,
+  .contact__mail, .contact__lede, .links a, .links__value, .case__line, .case__title { color: #000 !important; }
+  .case { border: 2px solid #000; }
+  .case__line { border: 1px solid #000; background: none; }
   html[data-draft] .ph { background: none; color: inherit; padding: 0; }
 }
 </style>
@@ -387,7 +617,7 @@ html[data-draft] .ph {
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="site-header">
+<header class="site-header on-dark">
   <div class="key" aria-hidden="true"></div>
   <div class="wrap site-header__row">
     <a class="wordmark" href="#top" aria-label="Harsh Bhimra, back to top">Harsh Bhimra</a>
@@ -403,60 +633,130 @@ html[data-draft] .ph {
 <main id="main" tabindex="-1">
 
   <!-- ===================== HERO ===================== -->
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero on-dark" aria-labelledby="hero-title">
     <div class="wrap">
-      <h1 class="hero__name" id="hero-title"><span>Harsh</span> <span>Bhimra</span></h1>
-      <p class="hero__role">DevOps engineer, cloud and reliability</p>
-      <p class="hero__lede">I build the path from a commit to a running, monitored service: cloud infrastructure, Kubernetes, delivery pipelines and the dashboards that tell you when something is wrong.</p>
+      <div class="hero__grid">
+        <div class="hero__text">
+          <h1 class="hero__name" id="hero-title"><span>Harsh</span> <span>Bhimra</span></h1>
+          <p class="hero__role">DevOps engineer, cloud and reliability</p>
+          <p class="hero__lede">I build the path from a commit to a running, monitored service: cloud infrastructure, Kubernetes, delivery pipelines and the dashboards that tell you when something is wrong.</p>
 
-      <div class="hero__actions">
-        <a class="btn btn--solid" href="mailto:harsh.bhimra@gmail.com">Email me</a>
-        <a class="textlink" href="https://github.com/harshbhimra01" rel="me noopener">See my GitHub</a>
+          <div class="hero__actions">
+            <a class="btn btn--amber" href="mailto:harsh.bhimra@gmail.com">Email me</a>
+            <a class="textlink" href="https://github.com/harshbhimra01" rel="me noopener">See my GitHub</a>
+          </div>
+          <p class="hero__status"><span class="pulse" aria-hidden="true"></span>Open to senior DevOps, cloud and SRE roles</p>
+        </div>
+
+        <figure class="hero__avatar">
+          <div class="hero__disc">
+            <span aria-hidden="true">HB</span>
+            <img src="photo.jpg" alt="Harsh Bhimra" width="800" height="800" fetchpriority="high" decoding="async" onerror="this.hidden=true">
+          </div>
+        </figure>
       </div>
-      <p class="hero__status"><span class="pulse" aria-hidden="true"></span>Open to senior DevOps, cloud and SRE roles</p>
 
-      <p class="route__cap" id="route-cap">The path of a change from commit to production. The colours match the four lines in the skills section below.</p>
+      <p class="route__cap" id="route-cap">The path of a change from commit to production. Select a station to jump to that line of my skills.</p>
       <ol class="route" aria-labelledby="route-cap">
         <li class="stn c-green" style="--i:0">
-          <span class="stn__name">Commit</span>
-          <span class="stn__tools">Git as the source of truth</span>
+          <a class="stn__link" href="#delivery"><span class="stn__name">Commit</span><span class="stn__tools">Git as the source of truth</span></a>
         </li>
         <li class="stn c-green" style="--i:1">
-          <span class="stn__name">Build</span>
-          <span class="stn__tools">Docker, GitHub Actions</span>
+          <a class="stn__link" href="#delivery"><span class="stn__name">Build</span><span class="stn__tools">Docker, GitHub Actions</span></a>
         </li>
         <li class="stn c-green" style="--i:2">
-          <span class="stn__name">Test</span>
-          <span class="stn__tools">Automated checks in CI</span>
+          <a class="stn__link" href="#delivery"><span class="stn__name">Test</span><span class="stn__tools">Automated checks in CI</span></a>
         </li>
         <li class="stn c-green" style="--i:3">
-          <span class="stn__name">Scan</span>
-          <span class="stn__tools">SAST, DAST, secrets</span>
+          <a class="stn__link" href="#delivery"><span class="stn__name">Scan</span><span class="stn__tools">SAST, DAST, secrets</span></a>
         </li>
         <li class="stn c-blue" style="--i:4">
-          <span class="stn__name">Deploy</span>
-          <span class="stn__tools">Kubernetes, Argo CD, Helm</span>
+          <a class="stn__link" href="#platform"><span class="stn__name">Deploy</span><span class="stn__tools">Kubernetes, Argo CD, Helm</span></a>
         </li>
         <li class="stn c-red" style="--i:5">
-          <span class="stn__name">Observe</span>
-          <span class="stn__tools">Prometheus, Grafana, Splunk</span>
+          <a class="stn__link" href="#reliability"><span class="stn__name">Observe</span><span class="stn__tools">Prometheus, Grafana, Splunk</span></a>
         </li>
       </ol>
     </div>
   </section>
+  <div class="edge" aria-hidden="true"></div>
 
   <!-- ===================== SKILLS ===================== -->
   <section class="section section--paper" id="skills" aria-labelledby="skills-title">
     <div class="wrap">
       <div class="section__head">
         <h2 class="section__title" id="skills-title">Skills on four lines</h2>
-        <p class="section__intro">My stack drawn as a transit map. Each line is an area of work, each station is something I do on it, and a double ring marks an interchange where two areas depend on each other.</p>
+        <p class="section__intro">My stack, drawn as a transit map. Each line is an area of work, each station is something I do on it, and a double ring marks an interchange where two areas depend on each other.</p>
       </div>
+
+      <!-- Overview map: wide screens only. The lists below carry the same content for everyone. -->
+      <figure class="map on-dark">
+        <svg viewBox="0 0 1200 364" role="img" aria-labelledby="map-title map-desc" focusable="false">
+          <title id="map-title">Map of the four lines</title>
+          <desc id="map-desc">Platform and Delivery meet at Kubernetes and GitOps. Reliability and Frontier meet at Observability and Model monitoring. The full list of stations follows in the columns below.</desc>
+
+          <!-- Platform -->
+          <g class="c-blue">
+            <path class="track" d="M120 290 H210 L300 200 H420"/>
+            <circle class="stop" cx="120" cy="290" r="11"/>
+            <circle class="stop" cx="210" cy="290" r="11"/>
+            <text class="mid" x="120" y="326">Cloud</text>
+            <text class="mid" x="210" y="326">IaC</text>
+            <text class="end" x="398" y="176">Kubernetes</text>
+            <g class="badge"><rect x="66" y="230" width="108" height="32" rx="16"/><text x="120" y="252">Platform</text></g>
+          </g>
+
+          <!-- Delivery -->
+          <g class="c-green">
+            <path class="track" d="M420 60 V270"/>
+            <circle class="stop" cx="420" cy="60" r="11"/>
+            <circle class="stop" cx="420" cy="130" r="11"/>
+            <circle class="stop" cx="420" cy="270" r="11"/>
+            <text x="446" y="66">CI/CD</text>
+            <text x="446" y="136">Pipeline security</text>
+            <text x="446" y="206">GitOps</text>
+            <text x="446" y="276">Automation</text>
+            <g class="badge"><rect x="366" y="4" width="108" height="32" rx="16"/><text x="420" y="26">Delivery</text></g>
+          </g>
+
+          <!-- Reliability -->
+          <g class="c-red">
+            <path class="track" d="M840 200 H960 L1050 290 H1140"/>
+            <circle class="stop" cx="1050" cy="290" r="11"/>
+            <circle class="stop" cx="1140" cy="290" r="11"/>
+            <text x="858" y="176">Observability</text>
+            <text class="mid" x="1050" y="326">SLOs</text>
+            <text class="mid" x="1140" y="326">Incidents</text>
+            <g class="badge"><rect x="1082" y="230" width="116" height="32" rx="16"/><text x="1140" y="252">Reliability</text></g>
+          </g>
+
+          <!-- Frontier -->
+          <g class="c-amber">
+            <path class="track" d="M840 60 V270"/>
+            <circle class="stop" cx="840" cy="60" r="11"/>
+            <circle class="stop" cx="840" cy="130" r="11"/>
+            <circle class="stop" cx="840" cy="270" r="11"/>
+            <text class="end" x="814" y="66">ML pipelines</text>
+            <text class="end" x="814" y="136">LLM serving</text>
+            <text class="end" x="814" y="206">Model monitoring</text>
+            <text class="end" x="814" y="276">AIOps</text>
+            <g class="badge"><rect x="786" y="4" width="108" height="32" rx="16"/><text x="840" y="26">Frontier</text></g>
+          </g>
+
+          <!-- Interchanges -->
+          <circle class="swap" cx="420" cy="200" r="16"/>
+          <circle class="swap" cx="840" cy="200" r="16"/>
+
+          <!-- Legend -->
+          <circle class="swap" cx="560" cy="336" r="9"/>
+          <text class="note" x="582" y="342">Interchange between two lines</text>
+        </svg>
+      </figure>
 
       <div class="lines">
 
         <!-- Platform -->
-        <section class="line c-blue" aria-labelledby="line-platform">
+        <section class="line c-blue" id="platform" aria-labelledby="line-platform">
           <h3 class="line__badge" id="line-platform">Platform</h3>
           <p class="line__blurb">Where everything runs.</p>
           <ul class="stns">
@@ -480,7 +780,7 @@ html[data-draft] .ph {
         </section>
 
         <!-- Delivery -->
-        <section class="line c-green" aria-labelledby="line-delivery">
+        <section class="line c-green" id="delivery" aria-labelledby="line-delivery">
           <h3 class="line__badge" id="line-delivery">Delivery</h3>
           <p class="line__blurb">How a change ships.</p>
           <ul class="stns">
@@ -509,7 +809,7 @@ html[data-draft] .ph {
         </section>
 
         <!-- Reliability -->
-        <section class="line c-red" aria-labelledby="line-reliability">
+        <section class="line c-red" id="reliability" aria-labelledby="line-reliability">
           <h3 class="line__badge" id="line-reliability">Reliability</h3>
           <p class="line__blurb">How it stays up.</p>
           <ul class="stns">
@@ -533,7 +833,7 @@ html[data-draft] .ph {
         </section>
 
         <!-- Frontier -->
-        <section class="line c-amber" aria-labelledby="line-frontier">
+        <section class="line c-amber" id="frontier" aria-labelledby="line-frontier">
           <h3 class="line__badge" id="line-frontier">Frontier</h3>
           <p class="line__blurb">Where AI runs in production.</p>
           <ul class="stns">
@@ -570,17 +870,22 @@ html[data-draft] .ph {
     <div class="wrap">
       <div class="section__head">
         <h2 class="section__title" id="work-title">Selected work</h2>
-        <p class="section__intro">Every write-up answers the same three questions: what was there before, what I changed, and what was different afterwards. The stripe on the left shows which line the work belongs to.</p>
+        <p class="section__intro">Every write-up answers the same three questions: what was there before, what I changed, and what was different afterwards. Each panel takes the colour of the line the work belongs to.</p>
       </div>
 
       <div class="cases">
 
         <article class="case c-green" aria-labelledby="case-1">
-          <header>
+          <header class="case__head">
+            <p class="case__line">Delivery</p>
             <h3 class="case__title" id="case-1"><span class="ph">Cut deploy time from 40 minutes to 6</span></h3>
-            <p class="case__meta"><span class="ph">Platform team · 2024 · 4 engineers</span></p>
+            <p class="case__meta"><span class="ph">Platform team, 2024, 4 engineers</span></p>
             <p class="case__tools"><span class="ph">GitHub Actions, Argo CD, Helm, Terraform</span></p>
           </header>
+          <div class="delta">
+            <p class="delta__row"><span class="vh">Before: </span><span class="delta__from"><span class="ph">40<small>min</small></span></span><span class="delta__rail" aria-hidden="true"></span><span class="vh">After: </span><span class="delta__to"><span class="ph">6<small>min</small></span></span></p>
+            <p class="delta__label"><span class="ph">Median deploy time</span></p>
+          </div>
           <dl class="ba">
             <div><dt>Before</dt><dd><span class="ph">Releases were run by hand from a wiki checklist. A typical deploy took 40 minutes, needed a senior engineer on standby, and failed about once in five attempts.</span></dd></div>
             <div><dt>What I changed</dt><dd><span class="ph">Rebuilt the pipeline as a single GitHub Actions workflow: build, test, image push, then GitOps sync with Argo CD. Wrote the environment config in Terraform so staging and production share one module. Added a manual approval gate only for production.</span></dd></div>
@@ -589,11 +894,16 @@ html[data-draft] .ph {
         </article>
 
         <article class="case c-blue" aria-labelledby="case-2">
-          <header>
+          <header class="case__head">
+            <p class="case__line">Platform</p>
             <h3 class="case__title" id="case-2"><span class="ph">Moved 40 services onto a shared Kubernetes platform</span></h3>
-            <p class="case__meta"><span class="ph">Cloud engineering · 2023–2024</span></p>
+            <p class="case__meta"><span class="ph">Cloud engineering, 2023 to 2024</span></p>
             <p class="case__tools"><span class="ph">EKS, Terraform, Helm, Istio, ExternalDNS</span></p>
           </header>
+          <div class="delta">
+            <p class="delta__row"><span class="vh">Before: </span><span class="delta__from"><span class="ph">9</span></span><span class="delta__rail" aria-hidden="true"></span><span class="vh">After: </span><span class="delta__to"><span class="ph">2</span></span></p>
+            <p class="delta__label"><span class="ph">Kubernetes clusters to run and patch</span></p>
+          </div>
           <dl class="ba">
             <div><dt>Before</dt><dd><span class="ph">Each team ran its own EKS cluster. 40 services across 9 clusters, no shared ingress, no consistent autoscaling, and cloud spend growing faster than traffic.</span></dd></div>
             <div><dt>What I changed</dt><dd><span class="ph">Designed a single multi-tenant EKS platform with namespaces per team, one Istio ingress, consistent Helm chart templates and a Terraform module every team used to onboard a new service.</span></dd></div>
@@ -602,15 +912,20 @@ html[data-draft] .ph {
         </article>
 
         <article class="case c-red" aria-labelledby="case-3">
-          <header>
+          <header class="case__head">
+            <p class="case__line">Reliability</p>
             <h3 class="case__title" id="case-3"><span class="ph">SLO-based alerting that cut pages by 70%</span></h3>
-            <p class="case__meta"><span class="ph">SRE · 2024</span></p>
+            <p class="case__meta"><span class="ph">SRE, 2024</span></p>
             <p class="case__tools"><span class="ph">Prometheus, Grafana, Alertmanager, OpenTelemetry</span></p>
           </header>
+          <div class="delta">
+            <p class="delta__row"><span class="vh">Before: </span><span class="delta__from"><span class="ph">15<small>min</small></span></span><span class="delta__rail" aria-hidden="true"></span><span class="vh">After: </span><span class="delta__to"><span class="ph">3<small>min</small></span></span></p>
+            <p class="delta__label"><span class="ph">Mean time to detect an incident</span></p>
+          </div>
           <dl class="ba">
-            <div><dt>Before</dt><dd><span class="ph">Alerts fired on host metrics — CPU, disk, memory. On-call was paged dozens of times a week, and most pages were noise nobody acted on. Real incidents were often found by users first.</span></dd></div>
+            <div><dt>Before</dt><dd><span class="ph">Alerts fired on host metrics: CPU, disk, memory. On-call was paged dozens of times a week, and most pages were noise nobody acted on. Real incidents were often found by users first.</span></dd></div>
             <div><dt>What I changed</dt><dd><span class="ph">Defined SLIs and SLOs for the top user journeys, moved alerting to burn-rate alerts on those SLOs, added tracing with OpenTelemetry, and rewrote the runbooks so each alert links to one.</span></dd></div>
-            <div><dt>After</dt><dd><span class="ph">Pages down by about 70%. Mean time to detect fell from ~15 minutes to under 3. The team now trusts the pager again.</span></dd></div>
+            <div><dt>After</dt><dd><span class="ph">Pages down by about 70%. Mean time to detect fell from about 15 minutes to under 3. The team now trusts the pager again.</span></dd></div>
           </dl>
         </article>
 
@@ -628,17 +943,25 @@ html[data-draft] .ph {
       </div>
       <div class="about__grid">
         <div class="prose">
-          <p>I work on the parts of software that users never see until they break: cloud accounts, clusters, pipelines and dashboards. I want shipping a change to be routine, and I want to hear about a failure from a graph before I hear about it from a user.</p>
+          <p class="lead">I work on the parts of software that users never see until they break: cloud accounts, clusters, pipelines and dashboards. I want shipping a change to be routine, and I want to hear about a failure from a graph before I hear about it from a user.</p>
           <p>Day to day that means AWS and Azure, Kubernetes, Terraform, CI/CD, GitOps and observability, with reliability targets and security checks built into the pipeline. I also work on the MLOps, LLMOps and AIOps side, where models are treated as services: versioned, deployed automatically and monitored.</p>
         </div>
-        <dl class="facts">
-          <div><dt>Focus</dt><dd>Cloud, Kubernetes, CI/CD, SRE, MLOps</dd></div>
-          <div><dt>Looking for</dt><dd>Senior DevOps, cloud and SRE roles</dd></div>
-          <div><dt>Based in</dt><dd><span class="ph">Bengaluru, India · open to remote</span></dd></div>
-          <div><dt>Experience</dt><dd><span class="ph">6+ years across cloud, platform and SRE teams</span></dd></div>
-          <div><dt>Certifications</dt><dd><span class="ph">AWS Solutions Architect · CKA · Terraform Associate</span></dd></div>
-          <div><dt>Résumé</dt><dd><span class="ph"><a class="textlink" href="resume.pdf">Download PDF</a></span></dd></div>
-        </dl>
+
+        <aside class="ticket on-dark" aria-label="At a glance">
+          <div class="ticket__top">
+            <p class="ticket__k">Looking for</p>
+            <p class="ticket__dest">Senior DevOps, cloud and SRE roles</p>
+          </div>
+          <div class="ticket__perf" aria-hidden="true"></div>
+          <dl class="ticket__facts">
+            <div><dt>Focus</dt><dd>Cloud, Kubernetes, CI/CD, SRE, MLOps</dd></div>
+            <div><dt>Based in</dt><dd><span class="ph">Delhi, India. Open to remote.</span></dd></div>
+            <div><dt>Experience</dt><dd><span class="ph">6+ years across cloud, platform and SRE teams</span></dd></div>
+            <div><dt>Certifications</dt><dd><span class="ph">AWS Solutions Architect, CKA, Terraform Associate</span></dd></div>
+            <div><dt>Résumé</dt><dd><a class="textlink" href="harsh-bhimra-resume.pdf" type="application/pdf" download>Download PDF</a></dd></div>
+          </dl>
+          <div class="ticket__code" aria-hidden="true"></div>
+        </aside>
       </div>
     </div>
   </section>
@@ -646,7 +969,7 @@ html[data-draft] .ph {
   <!-- ===================== CONTACT ===================== -->
   <section class="section contact on-dark" id="contact" aria-labelledby="contact-title">
     <div class="wrap contact__grid">
-      <div>
+      <div class="contact__intro">
         <h2 class="section__title" id="contact-title">Get in touch</h2>
         <p class="contact__lede">Hiring for a senior DevOps, cloud or SRE role? Planning a migration? Want to talk Kubernetes? Email is the best way to reach me.</p>
         <a class="contact__mail" href="mailto:harsh.bhimra@gmail.com">harsh.bhimra@gmail.com</a>
@@ -675,23 +998,48 @@ html[data-draft] .ph {
 </footer>
 
 <script>
-/* The only script: a "Copy address" button, shown only when the Clipboard API exists. */
+/* Two small enhancements. The page works fully without either. */
 (function () {
+  /* 1. "Copy address" button, shown only when the Clipboard API exists. */
   var btn = document.querySelector('[data-copy]');
   var status = document.getElementById('copy-status');
-  if (!btn || !status || !navigator.clipboard || !navigator.clipboard.writeText) return;
-  btn.hidden = false;
-  var label = btn.textContent, timer;
-  btn.addEventListener('click', function () {
-    navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
-      btn.textContent = 'Copied';
-      status.textContent = 'Email address copied to clipboard.';
-    }, function () {
-      status.textContent = 'Copy failed. Select the address above and copy it manually.';
+  if (btn && status && navigator.clipboard && navigator.clipboard.writeText) {
+    btn.hidden = false;
+    var label = btn.textContent, timer;
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+        btn.textContent = 'Copied';
+        status.textContent = 'Email address copied to clipboard.';
+      }, function () {
+        status.textContent = 'Copy failed. Select the address above and copy it manually.';
+      });
+      clearTimeout(timer);
+      timer = setTimeout(function () { btn.textContent = label; status.textContent = ''; }, 2400);
     });
-    clearTimeout(timer);
-    timer = setTimeout(function () { btn.textContent = label; status.textContent = ''; }, 2400);
-  });
+  }
+
+  /* 2. The nav is a strip map: the station for the section in view is current,
+        earlier stations are lit, later ones stay dark. */
+  if (!('IntersectionObserver' in window)) return;
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  var ids = links.map(function (a) { return a.getAttribute('href').slice(1); });
+  function setCurrent(id) {
+    var at = ids.indexOf(id);
+    links.forEach(function (a, i) {
+      a.classList.toggle('is-past', at > -1 && i < at);
+      if (i === at) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  var band = { rootMargin: '-45% 0px -50% 0px' };
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) setCurrent(e.target.tagName === 'FOOTER' ? 'contact' : e.target.id);
+    });
+  }, band);
+  ids.forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
+  var foot = document.querySelector('.site-footer'); if (foot) io.observe(foot);
+  var hero = document.querySelector('.hero');
+  if (hero) new IntersectionObserver(function (e) { if (e[0].isIntersecting) setCurrent(''); }, band).observe(hero);
 })();
 </script>
 </body>
