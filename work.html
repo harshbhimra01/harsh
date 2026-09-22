@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work | Harsh Bhimra — Before → After</title>
+<meta name="description" content="Selected work: faster deploys, one shared Kubernetes platform, SLO alerting that cut pages 70%. Harsh Bhimra, DevOps engineer.">
+<meta name="author" content="Harsh Bhimra">
+<meta name="theme-color" content="#F4FAF8">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/work.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Harsh Bhimra">
+<meta property="og:title" content="Work | Harsh Bhimra">
+<meta property="og:description" content="Before → after: three field reports with receipts.">
+<meta property="og:url" content="https://YOUR-DOMAIN.com/work.html">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230E1B22'/%3E%3Cpath d='M5 20c3-1 5-4 8-4s4 3 7 3 4-2 7-3' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M5 24c3-1 5-4 8-4s4 3 7 3 4-2 7-3' fill='none' stroke='%237FD8CC' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>html{background:#F4FAF8}#boot{position:fixed;inset:0;z-index:1000;background:#F4FAF8;display:grid;place-items:center}#boot.done{opacity:0;visibility:hidden}</style><link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div><div class="mist" aria-hidden="true"><i></i><i></i></div>
+<div id="boot" aria-hidden="true"><div style="text-align:center"><div class="boot-wave">Tide <em>marks</em></div><div class="boot-sub">WORK · BEFORE → AFTER</div><div class="boot-bar"><i id="boot-fill"></i></div></div></div>
+<div class="draft-note" role="note"><span aria-hidden="true">⚠️</span><span><b>DRAFT MODE</b> — yellow boxes are example content. Replace them, then delete <b>data-draft</b> from &lt;html&gt;.</span></div>
+<div class="strip" aria-hidden="true"><div class="strip-in" id="strip"><span><b>SELECTED WORK</b> · BEFORE → AFTER · WITH RECEIPTS · <span id="strip-clock">--:-- IST</span> · <span id="uptime">UP 00:00</span> ·&nbsp;</span></div></div>
+<header class="hud"><div class="wrap hud-row"><a class="brand" href="index.html" aria-label="Harsh Bhimra — home"><span class="brand-mark">HB</span><span class="brand-txt">Harsh Bhimra<small>DEVOPS · CLOUD · SRE</small></span></a><nav class="nav" aria-label="Primary"><a href="stack.html">Stack</a><a href="work.html" aria-current="true">Work</a><a href="about.html">About</a><a href="about.html#journey">Method</a><a href="contact.html">Contact</a></nav><a class="pill" href="mailto:harsh.bhimra@gmail.com"><i aria-hidden="true"></i><span id="ist-clock">--:-- IST</span>&nbsp;· OPEN</a></div><div class="progress" id="progress" aria-hidden="true"></div></header>
+<main id="main" tabindex="-1">
+<section class="section alt" aria-labelledby="work-title" style="padding-top:clamp(2.5rem,5vw,4rem)"><div class="wrap">
+<div data-reveal><p class="index">ROOM 02 — SELECTED WORK · TIDE MARKS</p><h1 class="big" id="work-title">Before → <em>after.</em></h1><p class="sub">Every case answers three questions: what was there before, what changed, and what was different afterwards.</p></div>
+<div class="stack" style="margin-top:2rem">
+<article class="job c-teal" aria-labelledby="case-1" data-reveal><header><p class="file">TIDE 001 · DELIVERY</p><h2 class="jtitle" id="case-1"><span class="ph">Cut deploy time from 40 minutes to 6</span></h2><p style="margin-top:.6rem"><a class="ghost-link" href="work-deploy-speed.html">Open the full file →</a></p><p class="jmeta"><span class="ph">Platform team, 2024, 4 engineers</span></p><div class="chips"><span class="ph">GitHub Actions</span><span class="ph">Argo CD</span><span class="ph">Helm</span><span class="ph">Terraform</span></div></header><dl class="ba"><div><dt>Before</dt><dd><span class="ph">Releases were run by hand from a wiki checklist. A typical deploy took 40 minutes, needed a senior engineer on standby, and failed about once in five attempts.</span></dd></div><div><dt>Changed</dt><dd><span class="ph">Rebuilt the pipeline as a single GitHub Actions workflow: build, test, image push, then GitOps sync with Argo CD. Wrote the environment config in Terraform so staging and production share one module. Added a manual approval gate only for production.</span></dd></div><div><dt>After</dt><dd><span class="ph">Median deploy time 6 minutes. Deploy failures down to about 1 in 40. Any engineer can now ship without the on-call lead.</span><span class="metrics"><span class="metric"><b><span data-count-to="40">40</span>→<span data-count-to="6">6</span></b> min</span><span class="metric">fail <b>1/5 → 1/40</b></span></span></dd></div></dl></article>
+<article class="job c-blue" aria-labelledby="case-2" data-reveal><header><p class="file">TIDE 002 · PLATFORM</p><h2 class="jtitle" id="case-2"><span class="ph">Moved 40 services onto a shared Kubernetes platform</span></h2><p style="margin-top:.6rem"><a class="ghost-link" href="work-k8s-platform.html">Open the full file →</a></p><p class="jmeta"><span class="ph">Cloud engineering, 2023 to 2024</span></p><div class="chips"><span class="ph">EKS</span><span class="ph">Terraform</span><span class="ph">Helm</span><span class="ph">Istio</span><span class="ph">ExternalDNS</span></div></header><dl class="ba"><div><dt>Before</dt><dd><span class="ph">Each team ran its own EKS cluster. 40 services across 9 clusters, no shared ingress, no consistent autoscaling, and cloud spend growing faster than traffic.</span></dd></div><div><dt>Changed</dt><dd><span class="ph">Designed a single multi-tenant EKS platform with namespaces per team, one Istio ingress, consistent Helm chart templates and a Terraform module every team used to onboard a new service.</span></dd></div><div><dt>After</dt><dd><span class="ph">Nine clusters down to two. Onboarding from two weeks to under a day. Spend down ~a third at flat traffic.</span><span class="metrics"><span class="metric"><b>9 → 2</b> clusters</span><span class="metric">onboard <b>2wk → 1d</b></span></span></dd></div></dl></article>
+<article class="job c-rose" aria-labelledby="case-3" data-reveal><header><p class="file">TIDE 003 · RELIABILITY</p><h2 class="jtitle" id="case-3"><span class="ph">SLO-based alerting that cut pages by 70%</span></h2><p style="margin-top:.6rem"><a class="ghost-link" href="work-slo-alerts.html">Open the full file →</a></p><p class="jmeta"><span class="ph">SRE, 2024</span></p><div class="chips"><span class="ph">Prometheus</span><span class="ph">Grafana</span><span class="ph">Alertmanager</span><span class="ph">OpenTelemetry</span></div></header><dl class="ba"><div><dt>Before</dt><dd><span class="ph">Alerts fired on host metrics: CPU, disk, memory. On-call paged dozens of times a week, mostly noise. Users found real incidents first.</span></dd></div><div><dt>Changed</dt><dd><span class="ph">Defined SLIs/SLOs for top journeys, moved to burn-rate alerts, added OpenTelemetry tracing, rewrote runbooks so each alert links to one.</span></dd></div><div><dt>After</dt><dd><span class="ph">Pages down ~70%. Detection 15 min → under 3. The pager is trusted again.</span><span class="metrics"><span class="metric">pages <b>−<span data-count-to="70">70</span>%</b></span><span class="metric">MTTD <b>15 → 3</b></span></span></dd></div></dl></article>
+</div>
+<p class="sub" data-reveal style="margin-top:1.6rem">More code: <a class="ghost-link" href="https://github.com/harshbhimra01" rel="me noopener">github.com/harshbhimra01</a> · The machine behind them: <a class="ghost-link" href="stack.html">the stack →</a></p>
+</div></section>
+</main>
+<footer><div class="wrap frow"><p>© <span id="year">2026</span> Harsh Bhimra · Delhi, IST</p><p><a href="#top">Back to top ↑</a> · <a href="index.html">Home</a> · Work room</p></div><div class="giant-band" aria-hidden="true"><div class="giant-track" id="giant"><span>BEFORE → AFTER · WITH RECEIPTS · BEFORE → AFTER ·&nbsp;</span></div></div></footer>
+<button class="to-top" id="to-top" type="button" aria-label="Back to top">↑</button>
+<div class="palette" id="palette" hidden role="dialog" aria-modal="true" aria-label="Quick jump"><div class="palette-box"><input id="palette-input" type="text" placeholder="Type to jump… (deploy, stack, about, contact)" aria-label="Jump to section" autocomplete="off"><div class="plist" id="palette-list" role="listbox"></div></div></div>
+<script src="site.js" defer></script>
+</body>
+</html>

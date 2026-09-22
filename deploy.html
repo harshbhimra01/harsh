@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deploy Room | Harsh Bhimra — Live Terminal &amp; Pipeline</title>
+<meta name="description" content="The deploy room: press one button and watch a commit flow through build, test, scan, deploy and observe. Harsh Bhimra, DevOps engineer.">
+<meta name="author" content="Harsh Bhimra">
+<meta name="theme-color" content="#F4FAF8">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/deploy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Harsh Bhimra">
+<meta property="og:title" content="Deploy Room | Harsh Bhimra">
+<meta property="og:description" content="Press one button and watch a commit flow through six stages into a monitored service.">
+<meta property="og:url" content="https://YOUR-DOMAIN.com/deploy.html">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230E1B22'/%3E%3Cpath d='M5 20c3-1 5-4 8-4s4 3 7 3 4-2 7-3' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M5 24c3-1 5-4 8-4s4 3 7 3 4-2 7-3' fill='none' stroke='%237FD8CC' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>html{background:#F4FAF8}#boot{position:fixed;inset:0;z-index:1000;background:#F4FAF8;display:grid;place-items:center}#boot.done{opacity:0;visibility:hidden}</style><link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div><div class="mist" aria-hidden="true"><i></i><i></i></div>
+<div id="boot" aria-hidden="true"><div style="text-align:center"><div class="boot-wave">Deploy <em>room</em></div><div class="boot-sub">COMMIT → PRODUCTION · LIVE</div><div class="boot-bar"><i id="boot-fill"></i></div></div></div>
+<div class="draft-note" role="note"><span aria-hidden="true">⚠️</span><span><b>DRAFT MODE</b> — yellow boxes are example content. Replace them, then delete <b>data-draft</b> from &lt;html&gt;.</span></div>
+<div class="strip" aria-hidden="true"><div class="strip-in" id="strip"><span><b>DEPLOY ROOM</b> · PRESS THE BUTTON · <span id="strip-clock">--:-- IST</span> · <span id="uptime">UP 00:00</span> · LIKE WATER · LIKE AIR ·&nbsp;</span></div></div>
+<header class="hud"><div class="wrap hud-row"><a class="brand" href="index.html" aria-label="Harsh Bhimra — home"><span class="brand-mark">HB</span><span class="brand-txt">Harsh Bhimra<small>DEVOPS · CLOUD · SRE</small></span></a><nav class="nav" aria-label="Primary"><a href="stack.html">Stack</a><a href="work.html">Work</a><a href="about.html">About</a><a href="about.html#journey">Method</a><a href="contact.html">Contact</a></nav><a class="pill" href="mailto:harsh.bhimra@gmail.com"><i aria-hidden="true"></i><span id="ist-clock">--:-- IST</span>&nbsp;· OPEN</a></div><div class="progress" id="progress" aria-hidden="true"></div></header>
+<main id="main" tabindex="-1">
+<section class="section" aria-labelledby="deploy-title" style="padding-top:clamp(2.5rem,5vw,4rem)"><div class="wrap">
+<div data-reveal><p class="index">ROOM 00 — LIVE · TERMINAL + PIPELINE</p><h1 class="big" id="deploy-title">One button. <em>Six stages.</em></h1><p class="sub">This is the whole philosophy in one room: a commit flows like water — built, checked, scanned, shipped, watched. Press it.</p></div>
+<div class="cta" data-reveal style="margin-top:1.6rem;display:flex;gap:.85rem;flex-wrap:wrap"><button class="btn btn-flow" id="deploy-btn" type="button">▶ Run tide deploy</button><a class="btn btn-paper" href="stack.html">See the stack ↗</a></div>
+<div class="deck" data-reveal style="margin-top:1.6rem"><div class="deck-grid"><figure class="term" aria-label="Live deploy terminal"><div class="term-bar"><span class="tdot" style="background:#FF6B61" aria-hidden="true"></span><span class="tdot" style="background:#E9A100" aria-hidden="true"></span><span class="tdot" style="background:#7FD8CC" aria-hidden="true"></span><span class="term-title">harsh@prod — tide.sh</span><span class="live"><i aria-hidden="true"></i>FLOWING</span></div><div class="term-body"><div class="t-log" id="term-log" role="log" aria-live="polite" aria-label="Deploy log"></div><div class="caret-row"><span class="t-p">user@prod:~$</span><span class="caret" aria-hidden="true"></span><span class="vh" id="term-status">Terminal ready.</span></div></div></figure><div class="pipe" aria-label="Deploy pipeline"><div class="pipe-head"><span>CURRENT · COMMIT → PROD</span><b id="pipe-state">● STILL WATER</b></div><ol class="track" id="pipe-track"><li class="node c-teal"><i>01</i>Commit<span style="display:block;opacity:.7">Git truth</span></li><li class="node c-teal"><i>02</i>Build<span style="display:block;opacity:.7">Docker · GHA</span></li><li class="node c-teal"><i>03</i>Test<span style="display:block;opacity:.7">CI checks</span></li><li class="node c-teal"><i>04</i>Scan<span style="display:block;opacity:.7">SAST · secrets</span></li><li class="node c-blue"><i>05</i>Deploy<span style="display:block;opacity:.7">K8s · Argo</span></li><li class="node c-rose"><i>06</i>Observe<span style="display:block;opacity:.7">Prom · Grafana</span></li><div class="fill" id="fill" aria-hidden="true"></div><span class="pkt" id="packet" aria-hidden="true"></span></ol><p class="deploy-err" id="deploy-err" role="alert"></p><p class="hint">Press <kbd>D</kbd> tide deploy · <kbd>/</kbd> jump · <kbd>Ctrl K</kbd> menu</p></div></div></div>
+<div class="bento" style="margin-top:1.6rem">
+<section class="card c-teal" data-reveal><p class="lnum">STAGE 01–02</p><div class="lhead"><span class="lbadge" aria-hidden="true">01</span><div><h3 class="lname">Commit → Build</h3><p class="lcount">GIT TRUTH · DOCKER · GHA</p></div></div><p class="lblurb">Every change starts as a reviewed commit. The pipeline builds it into a signed image with a bill of materials — no snowflakes, no pets.</p></section>
+<section class="card c-teal" data-reveal style="--d:.07s"><p class="lnum">STAGE 03–04</p><div class="lhead"><span class="lbadge" aria-hidden="true">02</span><div><h3 class="lname">Test → Scan</h3><p class="lcount">CI CHECKS · SAST · SECRETS</p></div></div><p class="lblurb">214 checks run themselves; scanners sweep for vulnerabilities and leaked secrets. Anything red stops the river here, never in prod.</p></section>
+<section class="card c-blue" data-reveal style="--d:.12s"><p class="lnum">STAGE 05</p><div class="lhead"><span class="lbadge" aria-hidden="true">03</span><div><h3 class="lname">Deploy</h3><p class="lcount">K8S · ARGO CD · HELM</p></div></div><p class="lblurb">GitOps syncs the desired state to Kubernetes: rollout 3/3, Helm release versioned, production gated by one human approval.</p></section>
+<section class="card c-rose" data-reveal style="--d:.17s"><p class="lnum">STAGE 06</p><div class="lhead"><span class="lbadge" aria-hidden="true">04</span><div><h3 class="lname">Observe</h3><p class="lcount">PROM · GRAFANA · SLO 99.95%</p></div></div><p class="lblurb">Burn-rate alerts on user journeys, traces on every request. The dashboard pages before a customer ever could.</p></section>
+</div>
+<p class="sub" data-reveal style="margin-top:1.6rem">How the real ones read: <a class="ghost-link" href="work.html">tide marks →</a></p>
+</div></section>
+</main>
+<footer><div class="wrap frow"><p>© <span id="year">2026</span> Harsh Bhimra · Delhi, IST</p><p><a href="#top">Back to top ↑</a> · <a href="index.html">Home</a> · Deploy room</p></div><div class="giant-band" aria-hidden="true"><div class="giant-track" id="giant"><span>RUN TIDE DEPLOY · COMMIT → PRODUCTION · RUN TIDE DEPLOY ·&nbsp;</span></div></div></footer>
+<button class="to-top" id="to-top" type="button" aria-label="Back to top">↑</button>
+<div class="palette" id="palette" hidden role="dialog" aria-modal="true" aria-label="Quick jump"><div class="palette-box"><input id="palette-input" type="text" placeholder="Type to jump… (stack, work, about, contact)" aria-label="Jump to section" autocomplete="off"><div class="plist" id="palette-list" role="listbox"></div></div></div>
+<script src="site.js" defer></script>
+</body>
+</html>

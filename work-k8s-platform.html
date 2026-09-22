@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shared Kubernetes Platform | Harsh Bhimra — 9 Clusters → 2</title>
+<meta name="description" content="Full case file: 40 services across 9 EKS clusters consolidated onto one multi-tenant platform. Onboarding 2 weeks to 1 day.">
+<meta name="author" content="Harsh Bhimra">
+<meta name="theme-color" content="#F4FAF8">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://YOUR-DOMAIN.com/work-k8s-platform.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Harsh Bhimra">
+<meta property="og:title" content="Shared Kubernetes Platform | Harsh Bhimra">
+<meta property="og:description" content="40 services, 9 clusters → one multi-tenant EKS platform.">
+<meta property="og:url" content="https://YOUR-DOMAIN.com/work-k8s-platform.html">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230E1B22'/%3E%3Cpath d='M5 20c3-1 5-4 8-4s4 3 7 3 4-2 7-3' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M5 24c3-1 5-4 8-4s4 3 7 3 4-2 7-3' fill='none' stroke='%237FD8CC' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<div class="grain" aria-hidden="true"></div><div class="mist" aria-hidden="true"><i></i><i></i></div>
+<div id="boot" aria-hidden="true"><div style="text-align:center"><div class="boot-wave">File <em>002</em></div><div class="boot-sub">PLATFORM · ONE CLUSTER TO RULE … TWO</div><div class="boot-bar"><i id="boot-fill"></i></div></div></div>
+<div class="draft-note" role="note"><span aria-hidden="true">⚠️</span><span><b>DRAFT MODE</b> — yellow boxes are example content. Replace them, then delete <b>data-draft</b> from &lt;html&gt;.</span></div>
+<div class="strip" aria-hidden="true"><div class="strip-in" id="strip"><span><b>FILE 002</b> · PLATFORM · 9 → 2 CLUSTERS · <span id="strip-clock">--:-- IST</span> · <span id="uptime">UP 00:00</span> ·&nbsp;</span></div></div>
+<header class="hud"><div class="wrap hud-row"><a class="brand" href="index.html" aria-label="Harsh Bhimra — home"><span class="brand-mark">HB</span><span class="brand-txt">Harsh Bhimra<small>DEVOPS · CLOUD · SRE</small></span></a><nav class="nav" aria-label="Primary"><a href="stack.html">Stack</a><a href="work.html" aria-current="true">Work</a><a href="about.html">About</a><a href="about.html#journey">Method</a><a href="contact.html">Contact</a></nav><a class="pill" href="mailto:harsh.bhimra@gmail.com"><i aria-hidden="true"></i><span id="ist-clock">--:-- IST</span>&nbsp;· OPEN</a></div><div class="progress" id="progress" aria-hidden="true"></div></header>
+<main id="main" tabindex="-1">
+<section class="section" aria-labelledby="case-title" style="padding-top:clamp(2.5rem,5vw,4rem)"><div class="wrap">
+<div data-reveal><p class="index">FILE 002 · PLATFORM · <a class="ghost-link" href="work.html">← All tide marks</a></p><h1 class="big" id="case-title"><span class="ph">Moved 40 services onto a shared Kubernetes platform</span></h1><p class="sub"><span class="ph">Cloud engineering, 2023 to 2024.</span> Nine clusters, no shared anything — down to two.</p><div class="chips" style="margin-top:1rem"><span class="ph">EKS</span><span class="ph">Terraform</span><span class="ph">Helm</span><span class="ph">Istio</span><span class="ph">ExternalDNS</span></div></div>
+<div class="stats" data-reveal><div class="stat"><b><span class="ph">9 → 2</span></b><span><span class="ph">Clusters to patch</span></span></div><div class="stat" data-reveal style="--d:.06s"><b><span class="ph">40</span></b><span><span class="ph">Services, one platform</span></span></div><div class="stat" data-reveal style="--d:.12s"><b><span class="ph">2wk → 1d</span></b><span><span class="ph">Service onboarding</span></span></div><div class="stat" data-reveal style="--d:.18s"><b><span class="ph">−⅓</span></b><span><span class="ph">K8s spend, flat traffic</span></span></div></div>
+<div class="stack" style="margin-top:1.6rem">
+<article class="job c-blue" data-reveal><header><p class="file">01 · SITUATION</p><h2 class="jtitle">Every team ran its own kingdom.</h2></header><dl class="ba"><div><dt>Before</dt><dd><span class="ph">40 services across 9 EKS clusters. No shared ingress, no consistent autoscaling, and cloud spend growing faster than traffic. Every upgrade was nine upgrades.</span></dd></div></dl></article>
+<article class="job c-blue" data-reveal><header><p class="file">02 · CONSTRAINT</p><h2 class="jtitle">Teams feared losing control.</h2></header><dl class="ba"><div><dt>Constraint</dt><dd><span class="ph">Nobody would move onto a platform that felt like a downgrade. Isolation, quotas and self-service onboarding were non-negotiable — the migration had to sell itself team by team.</span></dd></div></dl></article>
+<article class="job c-blue" data-reveal><header><p class="file">03 · THE CALL</p><h2 class="jtitle">Multi-tenant, one front door.</h2></header><dl class="ba"><div><dt>Changed</dt><dd><span class="ph">A single multi-tenant EKS platform: namespaces per team, one Istio ingress, consistent Helm chart templates, and a Terraform module every team used to onboard a service.</span></dd></div><div><dt>Tradeoff</dt><dd><span class="ph">Kept two clusters instead of one for blast-radius separation. Slightly more to run, far easier for every team to say yes to.</span></dd></div></dl></article>
+<article class="job c-blue" data-reveal><header><p class="file">04 · RECEIPT</p><h2 class="jtitle">Onboarding went from weeks to a day.</h2></header><dl class="ba"><div><dt>After</dt><dd><span class="ph">Two clusters instead of nine. New services onboard in under a day. Kubernetes-layer spend down roughly a third at flat traffic.</span><span class="metrics"><span class="metric"><b>9 → 2</b> clusters</span><span class="metric">onboard <b>2wk → 1d</b></span></span></dd></div></dl></article>
+</div>
+<p class="sub" data-reveal style="margin-top:1.6rem">Next file: <a class="ghost-link" href="work-slo-alerts.html">SLO alerting →</a> · <a class="ghost-link" href="work.html">all tide marks</a></p>
+</div></section>
+</main>
+<footer><div class="wrap frow"><p>© <span id="year">2026</span> Harsh Bhimra · Delhi, IST</p><p><a href="#top">Back to top ↑</a> · <a href="index.html">Home</a> · File 002</p></div><div class="giant-band" aria-hidden="true"><div class="giant-track" id="giant"><span>9 → 2 CLUSTERS · FILE 002 · 9 → 2 CLUSTERS ·&nbsp;</span></div></div></footer>
+<button class="to-top" id="to-top" type="button" aria-label="Back to top">↑</button>
+<div class="palette" id="palette" hidden role="dialog" aria-modal="true" aria-label="Quick jump"><div class="palette-box"><input id="palette-input" type="text" placeholder="Type to jump… (work, lab, contact)" aria-label="Jump to section" autocomplete="off"><div class="plist" id="palette-list" role="listbox"></div></div></div>
+<script src="site.js" defer></script>
+</body>
+</html>
